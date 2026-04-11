@@ -25,8 +25,13 @@ public class Console {
     public static Double getDoubleInput(String prompt) {
         Scanner scanner = new Scanner(System.in);
         println(prompt);
-        Double userInput = scanner.nextDouble();
-        return userInput;
+        try {
+            Double userInput = scanner.nextDouble();
+            return userInput;
+        } catch (Exception e) {
+            Console.println("Invalid input. Please enter a valid number.");
+            return getDoubleInput(prompt);
+        }
     }
 }
 
