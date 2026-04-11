@@ -12,34 +12,33 @@ public class MainApplication {
         Console.println("Current value: %s", myCalculator.getDisplay());
 
         while (isRunning) {
-            String operation = Console.getStringInput("Enter an operation (add, subtract, multiply, divide, clear, change, sqrt, reciprocal) or 'exit' to quit:");
-            if (operation.equalsIgnoreCase("exit")) {
-                isRunning = false;
-                continue;
-            }
+            String operation = Console.getStringInput("Enter an operation (add, subtract, multiply, divide) or 'exit' to quit:");
+            
+            if (isRunning) {
+                Console.println("Current value: %s", myCalculator.getDisplay());
 
             switch (operation.toLowerCase()) {
                 case "add":
-                    double addValue = Console.getDoubleInput("Enter a number to add:");
+                    Double addValue = Console.getDoubleInput("Enter a number to add:");
                     myCalculator.add(addValue);
                     break;
                 case "subtract":
-                    double subtractValue = Console.getDoubleInput("Enter a number to subtract:");
+                    Double subtractValue = Console.getDoubleInput("Enter a number to subtract:");
                     myCalculator.subtract(subtractValue);
                     break;
                 case "multiply":
-                    double multiplyValue = Console.getDoubleInput("Enter a number to multiply:");
+                    Double multiplyValue = Console.getDoubleInput("Enter a number to multiply:");
                     myCalculator.multiply(multiplyValue);
                     break;
                 case "divide":
-                    double divideValue = Console.getDoubleInput("Enter a number to divide:");
+                    Double divideValue = Console.getDoubleInput("Enter a number to divide:");
                     myCalculator.divide(divideValue);
                     break;
                 case "clear":
                     myCalculator.clearDisplay();
                     break;
                 case "change":
-                    double newValue = Console.getDoubleInput("Enter a new value:");
+                    Double newValue = Console.getDoubleInput("Enter a new value:");
                     myCalculator.changeNumber(newValue);
                     break;
                 case "sqrt":
@@ -48,19 +47,18 @@ public class MainApplication {
                 case "reciprocal":
                     myCalculator.inverse();
                     break;
+                case "exit":
+                    String confirm = Console.getStringInput("Do you want to exit? (y/n)");
+                    if (confirm.equalsIgnoreCase("y")) {   
+                        isRunning = false;
+                        Console.println("Goodbye!, Thanks for the ACJ Calculator!");
+                    }
+                    break;    
                 default:
                     Console.println("Invalid operation. Please try again.");
             }
-
-            Console.println("Current value: %s", myCalculator.getDisplay());
-
-            if (operation.equals("exit")) {
-            String confirm = Console.getStringInput("Do you want to exit? (y/n)");
-            if (confirm.equalsIgnoreCase("y")) {
-                isRunning = false;
             }
-            Console.println("Goodbye!");
+
         }
     }
-}
 }
