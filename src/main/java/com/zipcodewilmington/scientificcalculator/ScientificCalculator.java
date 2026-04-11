@@ -4,11 +4,11 @@ enum displayMode {
     DECIMAL, BINARY, OCTAL, HEXADECIMAL
 }
 
-public class ScintificCalculator {
+public class ScientificCalculator {
     private double currentValue;
     private displayMode currentDisplayMode;
 
-    public ScintificCalculator() {
+    public ScientificCalculator() {
         this.currentValue = 0.0;
         this.currentDisplayMode = displayMode.DECIMAL;
     }

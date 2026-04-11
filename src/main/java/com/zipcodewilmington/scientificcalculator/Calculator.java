@@ -132,12 +132,22 @@ public class Calculator {
         if (isError) {
             return;
         }
+        if (currentValue >= -1 && currentValue <= 1) {
+            currentValue = Math.asin(currentValue);
+        } else {
+            isError = true;
+        }
         currentValue = Math.asin(currentValue);
     }
 
     public void cosInverse() {
         if (isError) {
             return;
+        }
+        if (currentValue >= -1 && currentValue <= 1) {
+            currentValue = Math.acos(currentValue);
+        } else {
+            isError = true;
         }
         currentValue = Math.acos(currentValue);
     }
@@ -206,19 +216,52 @@ public class Calculator {
         }
         currentValue = Math.abs(currentValue);
     }
-    
 
-    
+    public void percentage() {
+        if (isError) {
+            return;
+        }
+        currentValue = currentValue / 100.0;
+    }
+
+enum trigMode { 
+    DEGREES, RADIANS 
+}
+
+public class ScientificCalculator {
+    private double currentValue;
+    private trigMode currentTrigMode;
+
+    public ScientificCalculator() {
+        this.currentValue = 0.0;
+        this.currentTrigMode = trigMode.DEGREES;
+    }
+
+    public void switchTrigMode(trigMode newMode) {
+        this.currentTrigMode = newMode;
+    }
+
+    public String getDisplay() { 
+        switch (currentTrigMode) {
+            case DEGREES:
+                return Double.toString(currentValue);
+            case RADIANS:
+                return Double.toString(Math.toRadians(currentValue));
+            default:
+                return Double.toString(currentValue);
+        }
+    }
+}
 
 enum displayMode {
     DECIMAL, BINARY, OCTAL, HEXADECIMAL
 }
 
-public class ScintificCalculator {
+public class ScientificCalculator {
     private double currentValue;
     private displayMode currentDisplayMode;
 
-    public ScintificCalculator() {
+    public ScientificCalculator() {
         this.currentValue = 0.0;
         this.currentDisplayMode = displayMode.DECIMAL;
     }
@@ -241,7 +284,5 @@ public class ScintificCalculator {
                 return Double.toString(currentValue);
         }
     }
-}
-
 }
 
