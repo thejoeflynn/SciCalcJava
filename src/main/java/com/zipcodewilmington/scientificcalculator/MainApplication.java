@@ -12,12 +12,30 @@ public class MainApplication {
         Console.println("Current value: %s", myCalculator.getDisplay());
 
         while (isRunning) {
-            String operation = Console.getStringInput("Enter an operation (add, subtract, multiply, divide) or 'exit' to quit:");
+            String operation = Console.getStringInput("Enter an operation. For a list of operations, type 'help' or 'exit' to quit:");
             
             if (isRunning) {
                 Console.println("Current value: %s", myCalculator.getDisplay());
 
             switch (operation.toLowerCase()) {
+                case "number":
+                    Double newValue = Console.getDoubleInput("Enter a new value:");
+                    myCalculator.changeNumber(newValue);
+                    break;
+                case "help":
+                    Console.println("Available operations:");
+                    Console.println("- number: Change the current value to a new number");
+                    Console.println("- add: Add a number to the current value");
+                    Console.println("- subtract: Subtract a number from the current value");
+                    Console.println("- multiply: Multiply the current value by a number");
+                    Console.println("- divide: Divide the current value by a number");
+                    Console.println("- clear: Clear the display and reset to 0");
+                    Console.println("- squareroot: Calculate the square root of the current value");
+                    Console.println("- square: Calculate the square of the current value");
+                    Console.println("- invert: Invert the sign of the current value");
+                    Console.println("- reciprocal: Calculate the reciprocal of the current value");
+                    Console.println("- exit: Exit the calculator");
+                    break;
                 case "add":
                     Double addValue = Console.getDoubleInput("Enter a number to add:");
                     myCalculator.add(addValue);
@@ -37,12 +55,17 @@ public class MainApplication {
                 case "clear":
                     myCalculator.clearDisplay();
                     break;
-                case "change":
-                    Double newValue = Console.getDoubleInput("Enter a new value:");
-                    myCalculator.changeNumber(newValue);
-                    break;
-                case "sqrt":
+                case "squareroot":
                     myCalculator.squareRoot();
+                    break;
+                case "square":
+                    myCalculator.square();
+                    break;
+                case "invert":
+                    myCalculator.invertSign();
+                    break;
+                case "exponentiate":
+                    myCalculator.exponentiate();
                     break;
                 case "reciprocal":
                     myCalculator.inverse();
