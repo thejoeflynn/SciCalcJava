@@ -64,9 +64,6 @@ public class MainApplication {
                 case "invert":
                     myCalculator.invertSign();
                     break;
-                case "exponentiate":
-                    myCalculator.exponentiate();
-                    break;
                 case "reciprocal":
                     myCalculator.inverse();
                     break;
