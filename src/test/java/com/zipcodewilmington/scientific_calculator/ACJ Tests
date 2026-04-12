@@ -105,6 +105,16 @@ void cosInverseOfTwoDisplaysErr() {
     assertEquals("Err", calculator.getDisplay());
 }
 
+// Normal behavior of tanInverse of 1 displays PI/4
+@Test
+void tanInverseOfOneDisplaysPiOverFour() {
+    calculator.setDisplay(1.0);
+    calculator.tanInverse();
+    assertEquals(Math.PI / 4, calculator.getDisplay(), 0.0001);
+    }
+
+// MATH FACT - tanInverse has no error situation — all values are valid
+}
 
 
 
