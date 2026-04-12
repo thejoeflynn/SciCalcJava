@@ -2,51 +2,50 @@ package com.zipcodewilmington.scientificcalculator;
 
 public class ScientificCalculator extends Calculator {
 
-    private double memory;
-    
+    protected String trigMode;
 
     public ScientificCalculator() {
         super();
-        this.memory = 0.0;
+        this.trigMode = "degrees";
+
     }
 
-    public void memoryStore() {
-        if (isError) {
-            return;
+    public void switchUnitsMode(String mode) {
+        if (trigMode.equalsIgnoreCase("degrees")) {
+            trigMode = "degrees";
+        } else {
+            trigMode = "radians";
         }
-        memory = currentValue;
-    }
-
-    public void memoryRecall() {
-        if (isError) {
-            return;
+        
+        if (mode.equalsIgnoreCase("degrees")) {
+            trigMode = "degrees";
+        } else if (mode.equalsIgnoreCase("radians")) {
+            trigMode = "radians";
+        } else {
+            isError = true;
         }
-        currentValue = memory;
-    }
-
-    public void memoryClear() {
-        memory = 0.0;
-    }
-
-    public void memoryAdd(double value) {
-        if (isError) {
-            return;
-        }
-        memory += currentValue;
     }
 
     public void sin() {
         if (isError) {
             return;
         }
-        currentValue = Math.sin(currentValue);
+        if (trigMode.equalsIgnoreCase("degrees")) {
+            currentValue = Math.sin(Math.toRadians(currentValue));
+        } else {
+            currentValue = Math.sin(currentValue);
+        }
     }
 
     public void cos() {
         if (isError) {
             return;
         }
-        currentValue = Math.cos(currentValue);
+        if (trigMode.equalsIgnoreCase("degrees")) {
+            currentValue = Math.cos(Math.toRadians(currentValue));
+        } else {
+            currentValue = Math.cos(currentValue);
+        }
     }
 
     public void tan() {
@@ -56,7 +55,7 @@ public class ScientificCalculator extends Calculator {
         currentValue = Math.tan(currentValue);
     }
 
-    public void sinInverse() {
+        public void sinInverse() {
         if (isError) {
             return;
         }
@@ -83,6 +82,42 @@ public class ScientificCalculator extends Calculator {
             return;
         }
         currentValue = Math.atan(currentValue);
+    }
+
+    public void square() {
+        if (isError) {
+            return;
+        }
+        currentValue = currentValue * currentValue;
+    }
+
+    public void squareRoot() {
+        if (isError) {
+            return;
+        }
+        if (currentValue >= 0) {
+            currentValue = Math.sqrt(currentValue);
+        } else {
+            isError = true;
+        }
+    }
+
+     public void invertSign() {
+        if (isError) {
+            return;
+        }
+        currentValue = -currentValue;
+    }
+
+    public void inverse() {
+        if (isError) {
+            return;
+        }
+        if (currentValue != 0) {
+            currentValue = 1 / currentValue;
+        } else {
+            isError = true;
+        }
     }
 
     public void log() {

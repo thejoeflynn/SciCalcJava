@@ -22,16 +22,11 @@ public class Console {
         return userInput;
     }
 
+    public static Integer getIntegerInput(String prompt) {
+        return null;
+    }
+
     public static Double getDoubleInput(String prompt) {
-        Scanner scanner = new Scanner(System.in);
-        println(prompt);
-        try {
-            Double userInput = scanner.nextDouble();
-            return userInput;
-        } catch (Exception e) {
-            Console.println("Invalid input. Please enter a valid number.");
-            return getDoubleInput(prompt);
-        }
+        return null;
     }
 }
-

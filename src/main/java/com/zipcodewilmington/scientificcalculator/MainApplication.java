@@ -43,10 +43,6 @@ public class MainApplication {
                     Console.println("- log: Calculate the base-10 logarithm of the current value");
                     Console.println("- percentage: Calculate the percentage of the current value");
                     Console.println("- absolute value: Calculate the absolute value of the current value");
-                    Console.println("- memory add: Add a number to memory");
-                    Console.println("- memory recall: Recall the value stored in memory");
-                    Console.println("- memory clear: Clear the memory");
-                    Console.println("- memory store: Store the current value in memory");
                     Console.println("- exit: Exit the calculator");
                     break;
                 case "add":
@@ -106,19 +102,6 @@ public class MainApplication {
                     break;
                 case "absolute value":
                     myCalculator.abs();
-                    break;
-                case "memory add":
-                    Double memoryAddValue = Console.getDoubleInput("Enter a number to add to memory:");
-                    myCalculator.memoryAdd(memoryAddValue);
-                    break;
-                case "memory recall":
-                    myCalculator.memoryRecall();
-                    break;
-                case "memory clear":
-                    myCalculator.memoryClear();
-                    break;
-                case "memory store":
-                    myCalculator.memoryStore();
                     break;
                 case "exit":
                     String confirm = Console.getStringInput("Do you want to exit? (y/n)");
