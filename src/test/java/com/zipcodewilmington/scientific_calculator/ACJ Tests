@@ -73,6 +73,8 @@ void tanDoesNothingWhenErrorIsActive() {
 }
 
 // INVERSE TESTS
+
+//SININVERSE TEST - NORMAL BEHAVIOR
 // Normal behavior should occur when sinInverse of 1 is PI/2
 @Test
 void sinInverseOfOneDisplaysPiOverTwo() {
@@ -81,6 +83,7 @@ void sinInverseOfOneDisplaysPiOverTwo() {
     assertEquals(Math.PI / 2, calculator.getDisplay(), 0.0001);
 }
 
+//SININVERSE TEST - ERROR
 // Error should return when sinInverse value is outside -1 to 1
 @Test
 void sinInverseOfTwoDisplaysErr() {
@@ -89,6 +92,7 @@ void sinInverseOfTwoDisplaysErr() {
     assertEquals("Err", calculator.getDisplay());
 }
 
+// COSINVERSE TEST - NORMAL BEHAVIOR
 // Normal behavior should express cosInverse of 1 is 0
 @Test
 void cosInverseOfOneDisplaysZero() {
@@ -97,6 +101,7 @@ void cosInverseOfOneDisplaysZero() {
     assertEquals(0.0, calculator.getDisplay(), 0.0001);
 }
 
+// COSINVERSE TEST - ERROR
 // Error returns when cosInverse value is outside -1 to 1
 @Test
 void cosInverseOfTwoDisplaysErr() {
@@ -105,6 +110,7 @@ void cosInverseOfTwoDisplaysErr() {
     assertEquals("Err", calculator.getDisplay());
 }
 
+// TANINVERSE TEST - NORMAL BEHAVIOR
 // Normal behavior of tanInverse of 1 displays PI/4
 @Test
 void tanInverseOfOneDisplaysPiOverFour() {
@@ -112,11 +118,40 @@ void tanInverseOfOneDisplaysPiOverFour() {
     calculator.tanInverse();
     assertEquals(Math.PI / 4, calculator.getDisplay(), 0.0001);
     }
-
+// TANINVERSE TEST - ERROR
 // MATH FACT - tanInverse has no error situation — all values are valid
 }
 
 
+// MEMORY TESTS
+
+// MEMORY TEST - NORMAL BEHAVIOR
+// Normal behavior should be added to stored value and update display
+@Test
+void storingFiveInMemoryAndRecallingDisplaysFive() {  
+    calculator.setDisplay(5.0);
+    calculator.memoryStore();
+    calculator.setDisplay(0.0);
+    calculator.memoryRecall();
+    assertEquals(5.0, calculator.getDisplay());
+}
+
+// Normal behavior — memory defaults to zero
+@Test
+void memoryDefaultsToZeroOnCreation() {
+calculator.memoryRecall();
+assertEquals(0.0, calculator.getDisplay());
+}
+
+// Normal behavior — memory clear resets to zero
+@Test
+void clearingMemoryAfterStoringFiveResetsToZero() {
+    calculator.setDisplay(5.0);
+    calculator.memoryStore();
+    calculator.memoryClear();
+    calculator.memoryRecall();
+    assertEquals(0.0, calculator.getDisplay());
+}
 
 
 
