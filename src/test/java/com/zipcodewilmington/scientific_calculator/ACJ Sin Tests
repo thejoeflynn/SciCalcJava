@@ -3,7 +3,7 @@ void setup() {
     calculator = new ScientificCalculator();
 }
 
-//SIN TESTS
+// SIN TESTS
 // Normal Behavior sin(0) should return 0
 @Test
 void sin(0)Displays0() {
@@ -12,11 +12,54 @@ void sin(0)Displays0() {
     assertEquals("0.0", calculator.getDisplay());
 }
 
-//LOG TESTS
-// Normal behavior log(10) should return 10
+@Test
+void sinDoesNothingWhenErrorIsActive() {
+        calculator.setDisplay(10.0);
+        calculator.divide(0); 
+        calculator.sin();
+        assertEquals("Err", calculator.getDisplay());
+    }
+
+//COS TESTS
+//Normal behavior should return one
+@Test
+void cosOfZeroDisplaysOne() {
+    calculator.setDisplay(0.0);
+    calculator.cos();
+    assertEquals(1.0, calculator.getDisplay(), 0.0001);
+}
+
+@Test
+void cosDoesNothingWhenErrorIsActive() {
+    calculator.divide(0);
+    calculator.cos();
+    assertEquals("Err", calculator.getDisplay());
+    }
+
+// LOG TESTS
+// Normal behavior log of ten should return 10
+
 @Test
 void log10Displays10() {
     calculator.setDisplay(10);
     calculator.log();
     assertEquals(1.0, calculator.getCurrentValue(), 0.0001);
 }
+
+// Error log of zero should return "Err"
+@Test
+void logOfZeroDisplaysErr() {
+    calculator.setDisplay(0.0);
+    calculator.log10();
+    assertEquals("Err", calculator.getDisplay());
+}
+
+
+
+
+
+
+
+
+
+
