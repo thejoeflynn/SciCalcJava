@@ -2,27 +2,27 @@ package com.zipcodewilmington.scientificcalculator;
 
 public class Memory extends ScientificCalculator {
   
-    private double memoryValue;
+    private double memory;
 
     public Memory() {
         super();
-        this.memoryValue = 0.0;
+        this.memory = 0.0;
     }
 
-    public void memoryAdd(double value) {
-        memoryValue += value;
+    public void memoryAdd() {
+        memory += currentValue;
     }
 
-    public double memoryRecall() {
-        return memoryValue;
+    public void memoryRecall() {
+        currentValue = memory;
     }
 
     public void memoryClear() {
-        memoryValue = 0.0;
+        memory = 0.0;
     }
 
     public void memoryStore() {
-        memoryValue = currentValue;
+        memory = currentValue;
     }
 }
 

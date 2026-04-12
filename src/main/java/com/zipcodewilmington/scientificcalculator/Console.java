@@ -2,10 +2,8 @@ package com.zipcodewilmington.scientificcalculator;
 
 import java.util.Scanner;
 
-/**
- * Created by leon on 2/9/18.
- */
 public class Console {
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void print(String output, Object... args) {
         System.out.printf(output, args);
@@ -16,17 +14,29 @@ public class Console {
     }
 
     public static String getStringInput(String prompt) {
-        Scanner scanner = new Scanner(System.in);
         println(prompt);
-        String userInput = scanner.nextLine();
-        return userInput;
-    }
-
-    public static Integer getIntegerInput(String prompt) {
-        return null;
+        return scanner.nextLine();
     }
 
     public static Double getDoubleInput(String prompt) {
-        return null;
+        println(prompt);
+        try {
+            String userInput = scanner.nextLine();
+            return Double.parseDouble(userInput);
+        } catch (Exception e) {
+            println("Invalid input. Please enter a valid number.");
+            return getDoubleInput(prompt);
+        }
+    }
+
+    public static Integer getIntegerInput(String prompt) {
+        println(prompt);
+        try {
+            String userInput = scanner.nextLine();
+            return Integer.parseInt(userInput);
+        } catch (Exception e) {
+            println("Invalid input. Please enter a valid number.");
+            return getIntegerInput(prompt);
+        }
     }
 }

@@ -7,7 +7,7 @@ public class MainApplication {
     public static void main(String[] args) {
         Console.println("Welcome to my calculator!");
 
-        ScientificCalculator myCalculator = new ScientificCalculator();
+        Memory myCalculator = new Memory();
         boolean isRunning = true;
         Console.println("Current value: %s", myCalculator.getDisplay());
 
@@ -25,6 +25,9 @@ public class MainApplication {
                 case "help":
                     Console.println("Available operations:");
                     Console.println("- number: Change the current value to a new number");
+                    Console.println("- memory recall: Recall the value stored in memory");
+                    Console.println("- memory clear: Clear the value stored in memory");
+                    Console.println("- memory store: Store the current value in memory");
                     Console.println("- add: Add a number to the current value");
                     Console.println("- subtract: Subtract a number from the current value");
                     Console.println("- multiply: Multiply the current value by a number");
@@ -45,6 +48,18 @@ public class MainApplication {
                     Console.println("- absolute value: Calculate the absolute value of the current value");
                     Console.println("- exit: Exit the calculator");
                     break;
+                case "clear":
+                    myCalculator.clearDisplay();
+                    break;
+                case "memory recall":
+                    myCalculator.memoryRecall();
+                    break; 
+                case "memory clear":
+                    myCalculator.memoryClear();
+                    break;
+                case "memory store":
+                    myCalculator.memoryStore();
+                    break;
                 case "add":
                     Double addValue = Console.getDoubleInput("Enter a number to add:");
                     myCalculator.add(addValue);
@@ -60,9 +75,6 @@ public class MainApplication {
                 case "divide":
                     Double divideValue = Console.getDoubleInput("Enter a number to divide:");
                     myCalculator.divide(divideValue);
-                    break;
-                case "clear":
-                    myCalculator.clearDisplay();
                     break;
                 case "squareroot":
                     myCalculator.squareRoot();
@@ -107,7 +119,7 @@ public class MainApplication {
                     String confirm = Console.getStringInput("Do you want to exit? (y/n)");
                     if (confirm.equalsIgnoreCase("y")) {   
                         isRunning = false;
-                        Console.println("Goodbye!, Thanks for the ACJ Calculator!");
+                        Console.println("Thanks for using the ACJ Calculator!");
                     }
                     break;    
                 default:
