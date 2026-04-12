@@ -118,10 +118,10 @@ void tanInverseOfOneDisplaysPiOverFour() {
     calculator.tanInverse();
     assertEquals(Math.PI / 4, calculator.getDisplay(), 0.0001);
     }
+
 // TANINVERSE TEST - ERROR
 // MATH FACT - tanInverse has no error situation — all values are valid
 }
-
 
 // MEMORY TESTS
 
@@ -164,6 +164,8 @@ void memoryAddWithDisplayOfThreeIncreasesMemoryByThree() {
     assertEquals(5.0, calculator.getDisplay());
 }
 
+// MEMORY ERROR TESTS
+
 // Error occurs when memoryStore blocked during error
 @Test
 void memoryStoreDoesNothingWhenErrorIsActive() {
@@ -182,5 +184,16 @@ void memoryStoreDoesNothingWhenErrorIsActive() {
     assertEquals(5.0, calculator.getDisplay());
 }
 
+// Error testing memoryRecall blocked during error
+    @Test
+    void memoryRecallDoesNothingWhenErrorIsActive() {
+    calculator.setDisplay(5.0);
+    calculator.memoryStore();
+    calculator.divide(0); // triggers error
+    
+    calculator.memoryRecall();
+
+    assertEquals("Err", calculator.getDisplay());
+}
 
 
