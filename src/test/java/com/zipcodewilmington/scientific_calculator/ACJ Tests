@@ -153,7 +153,16 @@ void clearingMemoryAfterStoringFiveResetsToZero() {
     assertEquals(0.0, calculator.getDisplay());
 }
 
-
+// Normal behavior — memoryAdd
+@Test
+void memoryAddWithDisplayOfThreeIncreasesMemoryByThree() {
+    calculator.setDisplay(2.0);
+    calculator.memoryStore();
+    calculator.setDisplay(3.0);
+    calculator.memoryAdd(3.0);
+    calculator.memoryRecall();
+    assertEquals(5.0, calculator.getDisplay());
+}
 
 
 
