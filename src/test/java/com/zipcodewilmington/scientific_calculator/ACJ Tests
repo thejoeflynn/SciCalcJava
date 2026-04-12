@@ -164,6 +164,23 @@ void memoryAddWithDisplayOfThreeIncreasesMemoryByThree() {
     assertEquals(5.0, calculator.getDisplay());
 }
 
+// Error occurs when memoryStore blocked during error
+@Test
+void memoryStoreDoesNothingWhenErrorIsActive() {
+    calculator.setDisplay(5.0);
+    calculator.memoryStore();
+    calculator.setDisplay(0.0);
+    calculator.divide(0); // triggers error
+
+// Store while error is active
+    calculator.setDisplay(99.0);
+    calculator.memoryStore();
+    calculator.memoryClear();
+    calculator.memoryRecall();
+
+// Memory should still be 5, not 99
+    assertEquals(5.0, calculator.getDisplay());
+}
 
 
 
