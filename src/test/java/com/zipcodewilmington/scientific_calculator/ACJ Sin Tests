@@ -12,6 +12,7 @@ void sin(0)Displays0() {
     assertEquals("0.0", calculator.getDisplay());
 }
 
+// Error should return error if incorrect function performed
 @Test
 void sinDoesNothingWhenErrorIsActive() {
         calculator.setDisplay(10.0);
@@ -29,6 +30,7 @@ void cosOfZeroDisplaysOne() {
     assertEquals(1.0, calculator.getDisplay(), 0.0001);
 }
 
+// Cos no display should result when error occurs
 @Test
 void cosDoesNothingWhenErrorIsActive() {
     calculator.divide(0);
@@ -38,7 +40,6 @@ void cosDoesNothingWhenErrorIsActive() {
 
 // LOG TESTS
 // Normal behavior log of ten should return 10
-
 @Test
 void log10Displays10() {
     calculator.setDisplay(10);
@@ -46,11 +47,28 @@ void log10Displays10() {
     assertEquals(1.0, calculator.getCurrentValue(), 0.0001);
 }
 
-// Error log of zero should return "Err"
+// Log of zero error should return "Err"
 @Test
 void logOfZeroDisplaysErr() {
     calculator.setDisplay(0.0);
     calculator.log10();
+    assertEquals("Err", calculator.getDisplay());
+}
+
+// TAN TESTS
+// Normal behavior of tan of zero should return 0
+@Test
+void tanOfZeroDisplaysZero() {
+    calculator.setDisplay(0.0);
+    calculator.tan();
+    assertEquals(0.0, calculator.getDisplay(), 0.0001);
+}
+
+// No action should occur when error is made
+@Test
+void tanDoesNothingWhenErrorIsActive() {
+    calculator.divide(0);
+    calculator.tan();
     assertEquals("Err", calculator.getDisplay());
 }
 
