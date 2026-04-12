@@ -1,0 +1,13 @@
+// Fresh calculator before every single test, so we don't have to worry about state from previous tests affecting the current test. @BeforeEach
+void setup() {
+    calculator = new ScientificCalculator();
+}
+
+//SIN TESTS
+// Normal Behavior sin(0) should return 0
+@Test
+void sin(0)Displays0() {
+    calculator.changeNumber(0);
+    calculator.sin();
+    assertEquals("0.0", calculator.getDisplay());
+}
