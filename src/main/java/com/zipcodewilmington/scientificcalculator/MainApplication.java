@@ -34,6 +34,15 @@ public class MainApplication {
                     Console.println("- square: Calculate the square of the current value");
                     Console.println("- invert: Invert the sign of the current value");
                     Console.println("- reciprocal: Calculate the reciprocal of the current value");
+                    Console.println("- sin: Calculate the sine of the current value");
+                    Console.println("- cos: Calculate the cosine of the current value");
+                    Console.println("- tan: Calculate the tangent of the current value");
+                    Console.println("- sin inverse: Calculate the arcsine of the current value");
+                    Console.println("- cos inverse: Calculate the arccosine of the current value");
+                    Console.println("- tan inverse: Calculate the arctangent of the current value");
+                    Console.println("- log: Calculate the base-10 logarithm of the current value");
+                    Console.println("- percentage: Calculate the percentage of the current value");
+                    Console.println("- absolute value: Calculate the absolute value of the current value");
                     Console.println("- exit: Exit the calculator");
                     break;
                 case "add":
@@ -95,11 +104,11 @@ public class MainApplication {
                     ScientificCalculator logCalc = new ScientificCalculator();
                     logCalc.log();
                     break;
-                case "percent":
+                case "percentage":
                     ScientificCalculator percentCalc = new ScientificCalculator();
                     percentCalc.percentage();
                     break;
-                case "abolute value":
+                case "absolute value":
                     ScientificCalculator absCalc = new ScientificCalculator();
                     absCalc.abs();
                     break;

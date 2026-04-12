@@ -2,6 +2,39 @@ package com.zipcodewilmington.scientificcalculator;
 
 public class ScientificCalculator extends Calculator {
 
+    private double memory;
+    
+
+    public ScientificCalculator() {
+        super();
+        this.memory = 0.0;
+    }
+
+    public void memoryStore() {
+        if (isError) {
+            return;
+        }
+        memory = currentValue;
+    }
+
+    public void memoryRecall() {
+        if (isError) {
+            return;
+        }
+        currentValue = memory;
+    }
+
+    public void memoryClear() {
+        memory = 0.0;
+    }
+
+    public void memoryAdd(double value) {
+        if (isError) {
+            return;
+        }
+        memory += currentValue;
+    }
+
     public void sin() {
         if (isError) {
             return;
@@ -116,4 +149,5 @@ public class ScientificCalculator extends Calculator {
         }
         currentValue = currentValue / 100.0;
     }
+
 }
