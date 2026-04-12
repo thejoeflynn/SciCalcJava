@@ -67,6 +67,42 @@ public class MainApplication {
                 case "reciprocal":
                     myCalculator.inverse();
                     break;
+                case "sin":
+                    ScientificCalculator sinCalc = new ScientificCalculator();
+                    sinCalc.sin();
+                    break;
+                case "cos":
+                    ScientificCalculator cosCalc = new ScientificCalculator();
+                    cosCalc.cos();
+                    break;
+                case "tan":
+                    ScientificCalculator tanCalc = new ScientificCalculator();
+                    tanCalc.tan();
+                    break;
+                case "sin inverse":
+                    ScientificCalculator sinInverseCalc = new ScientificCalculator();
+                    sinInverseCalc.sinInverse();
+                    break;
+                case "cos inverse":
+                    ScientificCalculator cosInverseCalc = new ScientificCalculator();
+                    cosInverseCalc.cosInverse();
+                    break;
+                case "tan inverse":
+                    ScientificCalculator tanInverseCalc = new ScientificCalculator();
+                    tanInverseCalc.tanInverse();
+                    break;
+                case "log":
+                    ScientificCalculator logCalc = new ScientificCalculator();
+                    logCalc.log();
+                    break;
+                case "percent":
+                    ScientificCalculator percentCalc = new ScientificCalculator();
+                    percentCalc.percentage();
+                    break;
+                case "abolute value":
+                    ScientificCalculator absCalc = new ScientificCalculator();
+                    absCalc.abs();
+                    break;
                 case "exit":
                     String confirm = Console.getStringInput("Do you want to exit? (y/n)");
                     if (confirm.equalsIgnoreCase("y")) {   
