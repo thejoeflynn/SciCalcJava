@@ -81,13 +81,17 @@ void sinInverseOfOneDisplaysPiOverTwo() {
     assertEquals(Math.PI / 2, calculator.getDisplay(), 0.0001);
 }
 
-// Error should return when the value of sinInverse is outside -1 to 1
+// Error should return when sinInverse value is outside -1 to 1
 @Test
 void sinInverseOfTwoDisplaysErr() {
     calculator.setDisplay(2.0); 
     calculator.sinInverse();
     assertEquals("Err", calculator.getDisplay());
 }
+
+
+
+
 
 
 
