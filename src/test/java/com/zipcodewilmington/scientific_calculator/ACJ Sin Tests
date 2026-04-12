@@ -11,3 +11,12 @@ void sin(0)Displays0() {
     calculator.sin();
     assertEquals("0.0", calculator.getDisplay());
 }
+
+//LOG TESTS
+// Normal behavior log(10) should return 10
+@Test
+void log10Displays10() {
+    calculator.setDisplay(10);
+    calculator.log();
+    assertEquals(1.0, calculator.getCurrentValue(), 0.0001);
+}
