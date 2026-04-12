@@ -89,7 +89,21 @@ void sinInverseOfTwoDisplaysErr() {
     assertEquals("Err", calculator.getDisplay());
 }
 
+// Normal behavior should express cosInverse of 1 is 0
+@Test
+void cosInverseOfOneDisplaysZero() {
+    calculator.setDisplay(1.0);
+    calculator.cosInverse();
+    assertEquals(0.0, calculator.getDisplay(), 0.0001);
+}
 
+// Error returns when cosInverse value is outside -1 to 1
+@Test
+void cosInverseOfTwoDisplaysErr() {
+    calculator.setDisplay(2.0);
+    calculator.cosInverse();
+    assertEquals("Err", calculator.getDisplay());
+}
 
 
 
