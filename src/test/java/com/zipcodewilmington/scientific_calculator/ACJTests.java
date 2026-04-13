@@ -1,41 +1,52 @@
+package com.zipcodewilmington.scientificcalculator;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class ACJTests {
+
+    private Memory myCalculator;
 // Fresh calculator before every single test, so we don't have to worry about state from previous tests affecting the current test. @BeforeEach
-void setup() {
-    calculator = new ScientificCalculator();
+    @BeforeEach
+    void setup() {
+        myCalculator = new Memory();
+    }
 }
 
 // SIN TESTS
 // Normal Behavior sin(0) should return 0
 @Test
-void sin(0)Displays0() {
-    calculator.changeNumber(0);
-    calculator.sin();
-    assertEquals("0.0", calculator.getDisplay());
+void sinOfZeroDisplaysZero() {
+    myCalculator.changeNumber(0);
+    myCalculator.sin();
+    assertEquals("0.0", myCalculator.getDisplay());
 }
 
 // Error should return error if incorrect function performed
 @Test
 void sinDoesNothingWhenErrorIsActive() {
-        calculator.setDisplay(10.0);
-        calculator.divide(0); 
-        calculator.sin();
-        assertEquals("Err", calculator.getDisplay());
+        myCalculator.setDisplay(10.0);
+        myCalculator.divide(0); 
+        myCalculator.sin();
+        assertEquals("Err", myCalculator.getDisplay());
     }
 
 //COS TESTS
 //Normal behavior should return one
 @Test
 void cosOfZeroDisplaysOne() {
-    calculator.setDisplay(0.0);
-    calculator.cos();
-    assertEquals(1.0, calculator.getDisplay(), 0.0001);
+    myCalculator.setDisplay(0.0);
+    myCalculator.cos();
+    assertEquals(1.0, myCalculator.getDisplay(), 0.0001);
 }
 
 // Cos no display should result when error occurs
 @Test
 void cosDoesNothingWhenErrorIsActive() {
-    calculator.divide(0);
-    calculator.cos();
-    assertEquals("Err", calculator.getDisplay());
+    myCalculator.divide(0);
+    myCalculator.cos();
+    assertEquals("Err", myCalculator.getDisplay());
     }
 
 // LOG TESTS
