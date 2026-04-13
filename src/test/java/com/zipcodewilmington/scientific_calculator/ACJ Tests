@@ -1,3 +1,7 @@
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 // Fresh calculator before every single test, so we don't have to worry about state from previous tests affecting the current test. @BeforeEach
 void setup() {
     calculator = new ScientificCalculator();
