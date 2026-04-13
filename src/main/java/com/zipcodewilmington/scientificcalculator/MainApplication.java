@@ -125,6 +125,7 @@ public class MainApplication {
                 default:
                     Console.println("Invalid operation. Please try again.");
             }
+            Console.println("Current value: %s", myCalculator.getDisplay());
             }
 
         }
