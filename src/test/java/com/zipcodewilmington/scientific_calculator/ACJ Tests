@@ -3,7 +3,17 @@ void setup() {
     calculator = new ScientificCalculator();
 }
 
+class SinCalculatorTest {
+
+    SinCalculator calculator;
+
+    @BeforeEach
+    void setUp() {
+        calculator = new SinCalculator();
+    }
+
 // SIN TESTS
+
 // Normal Behavior sin(0) should return 0
 @Test
 void sin(0)Displays0() {
@@ -20,6 +30,9 @@ void sinDoesNothingWhenErrorIsActive() {
         calculator.sin();
         assertEquals("Err", calculator.getDisplay());
     }
+}
+
+
 
 //COS TESTS
 //Normal behavior should return one
