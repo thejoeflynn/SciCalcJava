@@ -1,19 +1,14 @@
-package com.zipcodewilmington.scientificcalculator;
+package com.zipcodewilmington.scientific_calculator;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import com.zipcodewilmington.scientificcalculator.Memory;
 
 public class ACJTests {
 
-    private Memory myCalculator;
-// Fresh calculator before every single test, so we don't have to worry about state from previous tests affecting the current test. @BeforeEach
-    @BeforeEach
-    void setup() {
-        myCalculator = new Memory();
-    }
-}
-
+private Memory myCalculator = new Memory();
+    
 // SIN TESTS
 // Normal Behavior sin(0) should return 0
 @Test
@@ -38,7 +33,7 @@ void sinDoesNothingWhenErrorIsActive() {
 void cosOfZeroDisplaysOne() {
     myCalculator.setDisplay(0.0);
     myCalculator.cos();
-    assertEquals(1.0, myCalculator.getDisplay(), 0.0001);
+    assertEquals(1.0, myCalculator.getCurrentValue(), 0.0001);
 }
 
 // Cos no display should result when error occurs
@@ -53,34 +48,34 @@ void cosDoesNothingWhenErrorIsActive() {
 // Normal behavior log of ten should return 10
 @Test
 void log10Displays10() {
-    calculator.setDisplay(10);
-    calculator.log();
-    assertEquals(1.0, calculator.getCurrentValue(), 0.0001);
+    myCalculator.setDisplay(10);
+    myCalculator.log();
+    assertEquals(1.0, myCalculator.getCurrentValue(), 0.0001);
 }
 
 // Log of zero error should return "Err"
 @Test
 void logOfZeroDisplaysErr() {
-    calculator.setDisplay(0.0);
-    calculator.log10();
-    assertEquals("Err", calculator.getDisplay());
+    myCalculator.setDisplay(0.0);
+    myCalculator.log();
+    assertEquals("Err", myCalculator.getDisplay());
 }
 
 // TAN TESTS
 // Normal behavior of tan of zero should return 0
 @Test
 void tanOfZeroDisplaysZero() {
-    calculator.setDisplay(0.0);
-    calculator.tan();
-    assertEquals(0.0, calculator.getDisplay(), 0.0001);
+    myCalculator.setDisplay(0.0);
+    myCalculator.tan();
+    assertEquals(0.0, myCalculator.getCurrentValue(), 0.0001);
 }
 
 // No action should occur when error is made
 @Test
 void tanDoesNothingWhenErrorIsActive() {
-    calculator.divide(0);
-    calculator.tan();
-    assertEquals("Err", calculator.getDisplay());
+    myCalculator.divide(0);
+    myCalculator.tan();
+    assertEquals("Err", myCalculator.getDisplay());
 }
 
 // INVERSE TESTS
@@ -89,50 +84,50 @@ void tanDoesNothingWhenErrorIsActive() {
 // Normal behavior should occur when sinInverse of 1 is PI/2
 @Test
 void sinInverseOfOneDisplaysPiOverTwo() {
-    calculator.setDisplay(1.0);
-    calculator.sinInverse();
-    assertEquals(Math.PI / 2, calculator.getDisplay(), 0.0001);
+    myCalculator.setDisplay(1.0);
+    myCalculator.sinInverse();
+    assertEquals(Math.PI / 2, myCalculator.getCurrentValue(), 0.0001);
 }
 
 //SININVERSE TEST - ERROR
 // Error should return when sinInverse value is outside -1 to 1
 @Test
 void sinInverseOfTwoDisplaysErr() {
-    calculator.setDisplay(2.0); 
-    calculator.sinInverse();
-    assertEquals("Err", calculator.getDisplay());
+    myCalculator.setDisplay(2.0); 
+    myCalculator.sinInverse();
+    assertEquals("Err", myCalculator.getDisplay());
 }
 
 // COSINVERSE TEST - NORMAL BEHAVIOR
 // Normal behavior should express cosInverse of 1 is 0
 @Test
 void cosInverseOfOneDisplaysZero() {
-    calculator.setDisplay(1.0);
-    calculator.cosInverse();
-    assertEquals(0.0, calculator.getDisplay(), 0.0001);
+    myCalculator.setDisplay(1.0);
+    myCalculator.cosInverse();
+    assertEquals(0.0, myCalculator.getCurrentValue(), 0.0001);
 }
 
 // COSINVERSE TEST - ERROR
 // Error returns when cosInverse value is outside -1 to 1
 @Test
 void cosInverseOfTwoDisplaysErr() {
-    calculator.setDisplay(2.0);
-    calculator.cosInverse();
-    assertEquals("Err", calculator.getDisplay());
+    myCalculator.setDisplay(2.0);
+    myCalculator.cosInverse();
+    assertEquals("Err", myCalculator.getDisplay());
 }
 
 // TANINVERSE TEST - NORMAL BEHAVIOR
 // Normal behavior of tanInverse of 1 displays PI/4
 @Test
 void tanInverseOfOneDisplaysPiOverFour() {
-    calculator.setDisplay(1.0);
-    calculator.tanInverse();
-    assertEquals(Math.PI / 4, calculator.getDisplay(), 0.0001);
+    myCalculator.setDisplay(1.0);
+    myCalculator.tanInverse();
+    assertEquals(Math.PI / 4, myCalculator.getCurrentValue(), 0.0001);
     }
 
 // TANINVERSE TEST - ERROR
 // MATH FACT - tanInverse has no error situation — all values are valid
-}
+
 
 // MEMORY TESTS
 
@@ -140,39 +135,39 @@ void tanInverseOfOneDisplaysPiOverFour() {
 // Normal behavior should be added to stored value and update display
 @Test
 void storingFiveInMemoryAndRecallingDisplaysFive() {  
-    calculator.setDisplay(5.0);
-    calculator.memoryStore();
-    calculator.setDisplay(0.0);
-    calculator.memoryRecall();
-    assertEquals(5.0, calculator.getDisplay());
+    myCalculator.setDisplay(5.0);
+    myCalculator.memoryStore();
+    myCalculator.setDisplay(0.0);
+    myCalculator.memoryRecall();
+    assertEquals(5.0, myCalculator.getCurrentValue(), 0.0001);
 }
 
 // Normal behavior — memory defaults to zero
 @Test
 void memoryDefaultsToZeroOnCreation() {
-calculator.memoryRecall();
-assertEquals(0.0, calculator.getDisplay());
+    myCalculator.memoryRecall();
+    assertEquals(0.0, myCalculator.getCurrentValue(), 0.0001);
 }
 
 // Normal behavior — memory clear resets to zero
 @Test
 void clearingMemoryAfterStoringFiveResetsToZero() {
-    calculator.setDisplay(5.0);
-    calculator.memoryStore();
-    calculator.memoryClear();
-    calculator.memoryRecall();
-    assertEquals(0.0, calculator.getDisplay());
+    myCalculator.setDisplay(5.0);
+    myCalculator.memoryStore();
+    myCalculator.memoryClear();
+    myCalculator.memoryRecall();
+    assertEquals(0.0, myCalculator.getCurrentValue(), 0.0001);
 }
 
 // Normal behavior — memoryAdd
 @Test
 void memoryAddWithDisplayOfThreeIncreasesMemoryByThree() {
-    calculator.setDisplay(2.0);
-    calculator.memoryStore();
-    calculator.setDisplay(3.0);
-    calculator.memoryAdd(3.0);
-    calculator.memoryRecall();
-    assertEquals(5.0, calculator.getDisplay());
+    myCalculator.setDisplay(2.0);
+    myCalculator.memoryStore();
+    myCalculator.setDisplay(3.0);
+    myCalculator.memoryAdd(3.0);
+    myCalculator.memoryRecall();
+    assertEquals(5.0, myCalculator.getCurrentValue(), 0.0001);
 }
 
 // MEMORY ERROR TESTS
@@ -180,31 +175,34 @@ void memoryAddWithDisplayOfThreeIncreasesMemoryByThree() {
 // Error occurs when memoryStore blocked during error
 @Test
 void memoryStoreDoesNothingWhenErrorIsActive() {
-    calculator.setDisplay(5.0);
-    calculator.memoryStore();
-    calculator.setDisplay(0.0);
-    calculator.divide(0); // triggers error
+    myCalculator.setDisplay(5.0);
+    myCalculator.memoryStore();
+    myCalculator.setDisplay(0.0);
+    myCalculator.divide(0); // triggers error
 
 // Store while error is active
-    calculator.setDisplay(99.0);
-    calculator.memoryStore();
-    calculator.memoryClear();
-    calculator.memoryRecall();
+    myCalculator.setDisplay(99.0);
+    myCalculator.memoryStore();
+    myCalculator.memoryClear();
+    myCalculator.clearDisplay();
+    myCalculator.memoryRecall();
 
 // Memory should still be 5, not 99
-    assertEquals(5.0, calculator.getDisplay());
+    assertEquals(5.0, myCalculator.getCurrentValue(), 0.0001);
 }
 
 // Error testing memoryRecall blocked during error
     @Test
     void memoryRecallDoesNothingWhenErrorIsActive() {
-    calculator.setDisplay(5.0);
-    calculator.memoryStore();
-    calculator.divide(0); // triggers error
+    myCalculator.setDisplay(5.0);
+    myCalculator.memoryStore();
+    myCalculator.divide(0); // triggers error
     
-    calculator.memoryRecall();
+    myCalculator.memoryRecall();
 
-    assertEquals("Err", calculator.getDisplay());
+    assertEquals("Err", myCalculator.getDisplay());
+    }
+
 }
 
 

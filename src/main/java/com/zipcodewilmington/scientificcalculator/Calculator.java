@@ -11,7 +11,7 @@ public class Calculator {
 
     public String getDisplay() {
         if (isError) {
-            return "ERROR";
+            return "Err";
         } else {
             return String.valueOf(currentValue);
         }
@@ -30,6 +30,13 @@ public class Calculator {
             return;
         }
         currentValue = newValue;
+    }
+
+    public void setDisplay(double value) {
+        if (isError) {
+            return;
+        }
+        this.currentValue = value;
     }
 
     public void add(double value) {
