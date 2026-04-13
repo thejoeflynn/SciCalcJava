@@ -14,7 +14,17 @@ public class ACJTests {
     }
 }
 
+class SinCalculatorTest {
+
+    SinCalculator calculator;
+
+    @BeforeEach
+    void setUp() {
+        calculator = new SinCalculator();
+    }
+
 // SIN TESTS
+
 // Normal Behavior sin(0) should return 0
 @Test
 void sinOfZeroDisplaysZero() {
@@ -31,6 +41,9 @@ void sinDoesNothingWhenErrorIsActive() {
         myCalculator.sin();
         assertEquals("Err", myCalculator.getDisplay());
     }
+}
+
+
 
 //COS TESTS
 //Normal behavior should return one
