@@ -1,12 +1,24 @@
 package com.zipcodewilmington.scientificcalculator;
 
+public enum TrigMode { 
+    DEGREES, RADIANS 
+}
+
+public enum DisplayMode {
+    DECIMAL, BINARY, OCTAL, HEXADECIMAL
+}
+
 public class Calculator {
     private double currentValue;
     private boolean isError;
+    private TrigMode currentTrigMode;
+    private DisplayMode currentDisplayMode;
 
     public Calculator() {
         this.currentValue = 0.0;
         this.isError = false;
+        this.currentTrigMode = TrigMode.DEGREES;
+        this.currentDisplayMode = DisplayMode.DECIMAL;
     }
 
     public String getDisplay() {
@@ -223,21 +235,18 @@ public class Calculator {
         }
         currentValue = currentValue / 100.0;
     }
-
-enum trigMode { 
-    DEGREES, RADIANS 
 }
 
 public class ScientificCalculator {
     private double currentValue;
-    private trigMode currentTrigMode;
+    private TrigMode currentTrigMode;
 
     public ScientificCalculator() {
         this.currentValue = 0.0;
-        this.currentTrigMode = trigMode.DEGREES;
+        this.currentTrigMode = TrigMode.DEGREES;
     }
 
-    public void switchTrigMode(trigMode newMode) {
+    public void switchTrigMode(TrigMode newMode) {
         this.currentTrigMode = newMode;
     }
 
@@ -251,37 +260,85 @@ public class ScientificCalculator {
                 return Double.toString(currentValue);
         }
     }
-}
 
-enum displayMode {
-    DECIMAL, BINARY, OCTAL, HEXADECIMAL
-}
-
-public class ScientificCalculator {
-    private double currentValue;
-    private displayMode currentDisplayMode;
-
-    public ScientificCalculator() {
-        this.currentValue = 0.0;
-        this.currentDisplayMode = displayMode.DECIMAL;
+    public double sin() {
+        if (currentTrigMode == TrigMode.DEGREES) {
+            return Math.sin(Math.toRadians(currentValue));
+        } else {
+            return Math.sin(currentValue);
+        }
     }
 
-    public void switchDisplayMode(displayMode newMode) {
-        this.currentDisplayMode = newMode;
+    public double cos() {
+        if (currentTrigMode == TrigMode.DEGREES) {
+            return Math.cos(Math.toRadians(currentValue));
+        } else {
+            return Math.cos(currentValue);
+        }
     }
 
-    public String getDisplay() { 
-        switch (currentDisplayMode) {
-            case DECIMAL:
-                return Double.toString(currentValue);
-            case BINARY:
-                return Integer.toBinaryString((int) currentValue);
-            case OCTAL:
-                return Integer.toOctalString((int) currentValue);
-            case HEXADECIMAL:
-                return Integer.toHexString((int) currentValue);
-            default:
-                return Double.toString(currentValue);
+    public double tan() {
+        if (currentTrigMode == TrigMode.DEGREES) {
+            return Math.tan(Math.toRadians(currentValue));
+        } else {
+            return Math.tan(currentValue);
+        }
+    }
+
+    public double sinInverse() {
+        if (currentTrigMode == TrigMode.DEGREES) {
+            return Math.toDegrees(Math.asin(currentValue));
+        } else {
+            return Math.asin(currentValue);
+        }
+    }
+
+    public double cosInverse() {
+        if (currentTrigMode == TrigMode.DEGREES) {
+            return Math.toDegrees(Math.acos(currentValue));
+        } else {
+            return Math.acos(currentValue);
+        }
+    }
+
+    public double tanInverse() {
+        if (currentTrigMode == TrigMode.DEGREES) {
+            return Math.toDegrees(Math.atan(currentValue));
+        } else {
+            return Math.atan(currentValue);
+        }
+    }
+
+    public class DisplayModeCalculator {
+        private double currentValue;
+        private DisplayMode currentDisplayMode;
+
+        public DisplayModeCalculator() {
+            this.currentValue = 0.0;
+            this.currentDisplayMode = DisplayMode.DECIMAL;
+        }
+
+        public void switchDisplayMode(DisplayMode newMode) {
+            this.currentDisplayMode = newMode;
+        }
+
+        public String getDisplay() { 
+            switch (currentDisplayMode) {
+                case DECIMAL:
+                    return Double.toString(currentValue);
+                case BINARY:
+                    return Integer.toBinaryString((int) currentValue);
+                case OCTAL:
+                    return Integer.toOctalString((int) currentValue);
+                case HEXADECIMAL:
+                    return Integer.toHexString((int) currentValue);
+                default:
+                    return Double.toString(currentValue);
+            }
+        }
+
+        public void setCurrentValue(double newValue) {
+            this.currentValue = newValue;
         }
     }
 }
