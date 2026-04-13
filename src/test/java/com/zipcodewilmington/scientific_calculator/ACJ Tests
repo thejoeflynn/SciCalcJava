@@ -175,78 +175,89 @@ class InvCalculatorTest {
     }
 }
 
+class MemoryCalculatorTest {
 
-// MEMORY TESTS
+    MemoryCalculator calculator;
+
+    @BeforeEach
+    void setUp() {
+        calculator = new LogCalculator();
+    }
+
+    // MEMORY TESTS
 
 // MEMORY TEST - NORMAL BEHAVIOR
 // Normal behavior should be added to stored value and update display
-@Test
-void storingFiveInMemoryAndRecallingDisplaysFive() {  
-    calculator.setDisplay(5.0);
-    calculator.memoryStore();
-    calculator.setDisplay(0.0);
-    calculator.memoryRecall();
-    assertEquals(5.0, calculator.getDisplay());
-}
+    @Test
+    void storingFiveInMemoryAndRecallingDisplaysFive() {  
+        calculator.setDisplay(5.0);
+        calculator.memoryStore();
+        calculator.setDisplay(0.0);
+        calculator.memoryRecall();
+        assertEquals(5.0, calculator.getDisplay());
+    }
 
 // Normal behavior — memory defaults to zero
-@Test
-void memoryDefaultsToZeroOnCreation() {
-calculator.memoryRecall();
-assertEquals(0.0, calculator.getDisplay());
-}
+    @Test
+    void memoryDefaultsToZeroOnCreation() {
+        calculator.memoryRecall();
+        assertEquals(0.0, calculator.getDisplay());
+    }
 
 // Normal behavior — memory clear resets to zero
-@Test
-void clearingMemoryAfterStoringFiveResetsToZero() {
-    calculator.setDisplay(5.0);
-    calculator.memoryStore();
-    calculator.memoryClear();
-    calculator.memoryRecall();
-    assertEquals(0.0, calculator.getDisplay());
-}
+    @Test
+    void clearingMemoryAfterStoringFiveResetsToZero() {
+        calculator.setDisplay(5.0);
+        calculator.memoryStore();
+        calculator.memoryClear();
+        calculator.memoryRecall();
+        assertEquals(0.0, calculator.getDisplay());
+    }
 
 // Normal behavior — memoryAdd
-@Test
-void memoryAddWithDisplayOfThreeIncreasesMemoryByThree() {
-    calculator.setDisplay(2.0);
-    calculator.memoryStore();
-    calculator.setDisplay(3.0);
-    calculator.memoryAdd(3.0);
-    calculator.memoryRecall();
-    assertEquals(5.0, calculator.getDisplay());
-}
+    @Test
+    void memoryAddWithDisplayOfThreeIncreasesMemoryByThree() {
+        calculator.setDisplay(2.0);
+        calculator.memoryStore();
+        calculator.setDisplay(3.0);
+        calculator.memoryAdd(3.0);
+        calculator.memoryRecall();
+        assertEquals(5.0, calculator.getDisplay());
+    }
 
 // MEMORY ERROR TESTS
 
 // Error occurs when memoryStore blocked during error
-@Test
-void memoryStoreDoesNothingWhenErrorIsActive() {
-    calculator.setDisplay(5.0);
-    calculator.memoryStore();
-    calculator.setDisplay(0.0);
-    calculator.divide(0); // triggers error
+    @Test
+    void memoryStoreDoesNothingWhenErrorIsActive() {
+        calculator.setDisplay(5.0);
+        calculator.memoryStore();
+        calculator.setDisplay(0.0);
+        calculator.divide(0); // triggers error
 
 // Store while error is active
-    calculator.setDisplay(99.0);
-    calculator.memoryStore();
-    calculator.memoryClear();
-    calculator.memoryRecall();
+        calculator.setDisplay(99.0);
+        calculator.memoryStore();
+        calculator.memoryClear();
+        calculator.memoryRecall();
 
 // Memory should still be 5, not 99
-    assertEquals(5.0, calculator.getDisplay());
-}
+        assertEquals(5.0, calculator.getDisplay());
+    }
 
 // Error testing memoryRecall blocked during error
     @Test
     void memoryRecallDoesNothingWhenErrorIsActive() {
-    calculator.setDisplay(5.0);
-    calculator.memoryStore();
-    calculator.divide(0); // triggers error
+        calculator.setDisplay(5.0);
+        calculator.memoryStore();
+        calculator.divide(0); // triggers error
     
-    calculator.memoryRecall();
+        calculator.memoryRecall();
 
-    assertEquals("Err", calculator.getDisplay());
+        assertEquals("Err", calculator.getDisplay());
+    }
 }
+
+
 
 
